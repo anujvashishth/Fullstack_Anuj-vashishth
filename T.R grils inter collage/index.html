@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(to right,#141E30,#243B55);
+      color:white;
+      line-height:1.6;
+    }
+
+    header{
+      text-align:center;
+      padding:80px 20px;
+      background:linear-gradient(135deg,#1f4037,#99f2c8);
+      color:white;
+      border-bottom-left-radius:50px;
+      border-bottom-right-radius:50px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.5);
+    }
+    header img{
+      width:150px;height:150px;border-radius:50%;border:5px solid white;margin-bottom:15px;
+    }
+    header h1{font-size:2.8rem;margin-bottom:10px;}
+    header p{font-size:1.2rem;font-style:italic;}
+
+    nav{
+      display:flex;justify-content:center;background:#0d1b2a;
+      padding:15px;position:sticky;top:0;z-index:1000;
+    }
+    nav a{
+      color:white;text-decoration:none;margin:0 20px;font-weight:bold;transition:color .3s;
+    }
+    nav a:hover{color:#00FFAB;}
+
+    section{
+      max-width:1100px;margin:50px auto;padding:30px;
+      border-radius:20px;background:rgba(255,255,255,0.05);
+      backdrop-filter:blur(10px);box-shadow:0 8px 20px rgba(0,0,0,0.4);
+    }
+    section h2{
+      font-size:2rem;margin-bottom:20px;border-left:5px solid #00FFAB;padding-left:10px;
+    }
+
+    /* Skills */
+    .skills-list{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;
+    }
+    .skill{
+      background:rgba(0,255,171,0.1);padding:15px;border-radius:10px;
+      text-align:center;transition:.3s;
+    }
+    .skill:hover{transform:translateY(-5px);}
+    .skill i{font-size:30px;margin-bottom:10px;color:#00FFAB;}
+
+    /* Projects */
+    .projects-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;
+    }
+    .project-card{
+      background:rgba(255,255,255,0.08);padding:20px;border-radius:15px;text-align:center;transition:.3s;
+    }
+    .project-card:hover{transform:scale(1.05);}
+    .project-card i{font-size:40px;margin-bottom:15px;color:#FFD700;}
+
+    /* Education */
+    .education{
+      display:grid;gap:20px;
+    }
+    .edu-card{
+      background:rgba(255,255,255,0.08);padding:20px;border-radius:15px;
+      transition:.3s;
+    }
+    .edu-card:hover{transform:translateX(5px);}
+    .edu-card i{color:#FFD700;margin-right:10px;}
+
+    /* Academic Timetable */
+    table{
+      width:100%;border-collapse:collapse;margin-top:20px;
+    }
+    th,td{
+      border:1px solid rgba(255,255,255,0.3);
+      padding:12px;text-align:center;
+    }
+    th{background:rgba(0,255,171,0.2);}
+    td{background:rgba(255,255,255,0.05);}
+
+    /* Contact */
+    .contact-info p{margin:10px 0;font-size:1.1rem;}
+    .contact-info i{margin-right:10px;color:#00FFAB;}
+    .social-icons a{margin:0 10px;font-size:28px;color:white;transition:.3s;}
+    .social-icons a:hover{color:#FFD700;}
+
+    footer{
+      text-align:center;padding:20px;margin-top:30px;background:#0d1b2a;color:#aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <img src="https://via.placeholder.com/150" alt="Profile Photo">
+    <h1>John Doe</h1>
+    <p>🌐 Web Developer | 🎨 Designer | 💻 Programmer</p>
+  </header>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#timetable">Timetable</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hello! I am a passionate Computer Science student and aspiring Web Developer. I love creating interactive and modern websites using the latest technologies. I aim to become a full-stack developer 🚀.</p>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-list">
+      <div class="skill"><i class="fa-brands fa-html5"></i><p>HTML5</p></div>
+      <div class="skill"><i class="fa-brands fa-css3-alt"></i><p>CSS3</p></div>
+      <div class="skill"><i class="fa-brands fa-js"></i><p>JavaScript</p></div>
+      <div class="skill"><i class="fa-brands fa-python"></i><p>Python</p></div>
+      <div class="skill"><i class="fa-solid fa-database"></i><p>SQL</p></div>
+      <div class="skill"><i class="fa-brands fa-github"></i><p>Git & GitHub</p></div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <i class="fa-solid fa-globe"></i>
+        <h3>Portfolio Website</h3>
+        <p>A responsive personal portfolio website built with HTML, CSS, and JavaScript.</p>
+      </div>
+      <div class="project-card">
+        <i class="fa-solid fa-shopping-cart"></i>
+        <h3>E-commerce Page</h3>
+        <p>An e-commerce product page layout with shopping cart functionality.</p>
+      </div>
+      <div class="project-card">
+        <i class="fa-solid fa-robot"></i>
+        <h3>Chatbot App</h3>
+        <p>A simple chatbot created with Python and Flask for real-time interaction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="education">
+      <div class="edu-card"><i class="fa-solid fa-user-graduate"></i><strong>B.Tech in Computer Science</strong> – XYZ University (2022–2026)</div>
+      <div class="edu-card"><i class="fa-solid fa-school"></i><strong>Higher Secondary (12th)</strong> – ABC School (2020–2022)</div>
+      <div class="edu-card"><i class="fa-solid fa-book-open"></i><strong>Secondary (10th)</strong> – ABC School (2018–2020)</div>
+    </div>
+  </section>
+
+  <!-- Academic Timetable -->
+  <section id="timetable">
+    <h2>Academic Timetable</h2>
+    <table>
+      <tr>
+        <th>Day</th>
+        <th>9:00 - 10:00</th>
+        <th>10:00 - 11:00</th>
+        <th>11:00 - 12:00</th>
+        <th>1:00 - 2:00</th>
+        <th>2:00 - 3:00</th>
+      </tr>
+      <tr>
+        <td>Monday</td><td>Math</td><td>Physics</td><td>Computer</td><td>DBMS</td><td>Project</td>
+      </tr>
+      <tr>
+        <td>Tuesday</td><td>OS</td><td>Math</td><td>Elective</td><td>Python Lab</td><td>DBMS</td>
+      </tr>
+      <tr>
+        <td>Wednesday</td><td>Computer</td><td>Math</td><td>OS</td><td>Lab</td><td>Project</td>
+      </tr>
+      <tr>
+        <td>Thursday</td><td>DBMS</td><td>Physics</td><td>Elective</td><td>OS</td><td>Seminar</td>
+      </tr>
+      <tr>
+        <td>Friday</td><td>Python</td><td>Math</td><td>DBMS</td><td>Computer</td><td>Project</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-info">
+      <p><i class="fa-solid fa-envelope"></i> john.doe@example.com</p>
+      <p><i class="fa-solid fa-phone"></i> +91 9876543210</p>
+    </div>
+    <div class="social-icons">
+      <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="#"><i class="fa-brands fa-github"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 John Doe | All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>
