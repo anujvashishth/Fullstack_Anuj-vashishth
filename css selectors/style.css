@@ -1,0 +1,72 @@
+body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5; /* HEX color */
+      margin: 20px;
+    }
+
+    /* ID selector */
+    #about {
+      background-color: rgba(0, 128, 255, 0.1); /* RGBA color */
+      border: 2px solid #0077cc;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    /* Class selector */
+    .highlight {
+      color: rgb(200, 50, 50); /* RGB color */
+      font-weight: bold;
+    }
+
+    /* Attribute selector */
+    a[target="_blank"] {
+      color: hsl(120, 70%, 30%); /* HSL color */
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Pseudo-class selector */
+    a:hover {
+      color: #ff6600;
+      text-decoration: underline;
+    }
+
+    /* Pseudo-element selector */
+    p::first-letter {
+      font-size: 1.5em;
+      color: #0077cc;
+    }
+
+    /* Unordered movie list */
+    ul.movies {
+      list-style-type: square;
+      margin-top: 20px;
+    }
+
+    /* Style favorite movie uniquely */
+    ul.movies li.favorite {
+      background-color: rgba(255, 215, 0, 0.3);
+      border-left: 5px solid gold;
+      padding: 5px;
+      font-style: italic;
+    }
+
+    /* Ordered city list with custom styles */
+    ol.cities {
+      list-style-type: upper-roman;
+      background: linear-gradient(to right, #f0f8ff, #e6f7ff);
+      border: 2px dashed hsl(200, 70%, 50%);
+      border-radius: 8px;
+    }
+
+    ol.cities li {
+      margin: 8px 0;
+      transition: transform 0.3s;
+    }
+
+    /* Hover effect random styling */
+    ol.cities li:hover {
+      transform: scale(1.1);
+      color: #ff1493;
+      font-weight: bold;
+    }
