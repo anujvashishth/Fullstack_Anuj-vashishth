@@ -1,0 +1,166 @@
+ <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Simple Calculator</title>
+</head>
+<body>
+  <h2>Simple Calculator</h2>
+
+  <!-- Display -->
+  <input id="display" type="text" readonly aria-label="Calculator display" value="0" />
+
+  <!-- Buttons laid out in a table so it looks like a calculator without CSS -->
+  <table>
+    <tr>
+      <td><button data-action="clear">C</button></td>
+      <td><button data-action="back">⌫</button></td>
+      <td><button data-value="(">(</button></td>
+      <td><button data-value=")">)</button></td>
+    </tr>
+    <tr>
+      <td><button data-value="7">7</button></td>
+      <td><button data-value="8">8</button></td>
+      <td><button data-value="9">9</button></td>
+      <td><button data-value="/">÷</button></td>
+    </tr>
+    <tr>
+      <td><button data-value="4">4</button></td>
+      <td><button data-value="5">5</button></td>
+      <td><button data-value="6">6</button></td>
+      <td><button data-value="*">×</button></td>
+    </tr>
+    <tr>
+      <td><button data-value="1">1</button></td>
+      <td><button data-value="2">2</button></td>
+      <td><button data-value="3">3</button></td>
+      <td><button data-value="-">−</button></td>
+    </tr>
+    <tr>
+      <td><button data-value="0">0</button></td>
+      <td><button data-value=".">.</button></td>
+      <td><button data-action="equals">=</button></td>
+      <td><button data-value="+">+</button></td>
+    </tr>
+  </table>
+
+  <script>
+    (function () {
+      const display = document.getElementById('display');
+
+      // Start with '0'
+      function setDisplay(text) {
+        display.value = String(text);
+      }
+      function getDisplay() {
+        return display.value;
+      }
+
+      // Append a value to display (handles initial 0)
+      function appendValue(v) {
+        let cur = getDisplay();
+        if (cur === "0" && v !== ".") cur = "";
+        setDisplay(cur + v);
+      }
+
+      // Backspace
+      function backspace() {
+        let cur = getDisplay();
+        if (cur.length <= 1) {
+          setDisplay("0");
+        } else {
+          setDisplay(cur.slice(0, -1));
+        }
+      }
+
+      // Clear
+      function clearAll() {
+        setDisplay("0");
+      }
+
+      // Safe evaluate: allow only digits, operators, parentheses, dot and spaces
+      // This prevents arbitrary code execution through eval.
+      function safeEvaluate(expr) {
+        // Replace common UI characters for operators with JavaScript equivalents
+        expr = expr.replace(/÷/g, '/').replace(/×/g, '*').replace(/−/g, '-');
+
+        // Check allowed characters
+        if (!/^[0-9+\-*/().\s]+$/.test(expr)) {
+          throw new Error("Invalid characters in expression");
+        }
+
+        // Prevent sequences like "" (exponent) or "/*" weird constructs if you want stricter rules
+        // Evaluate using Function constructor (equivalent to eval but here input is sanitized)
+        // Use try/catch to handle syntax errors
+        try {
+          // eslint-disable-next-line no-new-func
+          const result = Function('"use strict"; return (' + expr + ')')();
+          if (typeof result === 'number' && isFinite(result)) return result;
+          throw new Error("Result is not a finite number");
+        } catch (e) {
+          throw new Error("Invalid expression");
+        }
+      }
+
+      // Equals
+      function calculate() {
+        const expr = getDisplay();
+        try {
+          const res = safeEvaluate(expr);
+          setDisplay(String(res));
+        } catch (e) {
+          setDisplay("Error");
+          // clear after short delay so user can see error (no CSS; using setTimeout)
+          setTimeout(() => setDisplay("0"), 900);
+        }
+      }
+
+      // Button handling
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        const val = btn.getAttribute('data-value');
+        const action = btn.getAttribute('data-action');
+
+        if (action === 'clear') clearAll();
+        else if (action === 'back') backspace();
+        else if (action === 'equals') calculate();
+        else if (val) appendValue(val);
+      });
+
+      // Keyboard support
+      document.addEventListener('keydown', (e) => {
+        const allowedKeys = '0123456789+-*/().';
+        if (allowedKeys.includes(e.key)) {
+          // prevent default to avoid typing in other focused elements
+          e.preventDefault();
+          appendValue(e.key);
+          return;
+        }
+        if (e.key === 'Enter' || e.key === '=') {
+          e.preventDefault();
+          calculate();
+          return;
+        }
+        if (e.key === 'Backspace') {
+          e.preventDefault();
+          backspace();
+          return;
+        }
+        if (e.key.toLowerCase() === 'c') {
+          // quick clear with 'c'
+          e.preventDefault();
+          clearAll();
+          return;
+        }
+      });
+
+      // Make display focusable so keyboard works even if you click it
+      display.addEventListener('focus', () => {
+        // keep the input readonly but let keyboard events be handled globally
+        display.blur();
+      });
+    })();
+  </script>
+</body>
+</html> 
